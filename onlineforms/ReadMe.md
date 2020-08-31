@@ -7,4 +7,14 @@
 * Ability to create a unique form control number (aka DR) for each download
 </p>
 
-Site Structure
+Files/Directories to integrate
+* View Directory
+  * loanforms.php - front-end
+* Contoller
+  * PForms.php - controls where page should go. It has the generatepdf() that 
+* assets directory - contains form templates and the forms.config.json(responsible for controlling the location of text in pdf)
+* Update Autoload.php 
+  * $autoload['helper'] = array('url','form');
+* Add the following to rountes.php  
+  * $route['pforms/generatepdf'] = 'pforms/generatepdf';
+  * $route['(:any)'] = 'pforms/view/$1';
