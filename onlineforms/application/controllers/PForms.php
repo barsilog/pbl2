@@ -35,9 +35,9 @@ class PForms extends CI_Controller
 
                   //TODO: Replace $member_name, $member_name with real variable
                   
-                  $dr_no = "DR". new Date(data.timeStamp*1000);
                   $member_name = "Carrie-Anne Shaleen Carlyle S. Reyes";
-                  $member_id = "44436444";
+                  $member_id = "44434";
+                  $dr_no = "DR-".$member_id . date("His"); 
 
                   $pdf = new Fpdi();
 
@@ -77,35 +77,35 @@ class PForms extends CI_Controller
             }
       }
 
-      private function getPDFToDownload($pdf, $type)
-      {
+      // private function getPDFToDownload($pdf, $type)
+      // {
 
-            $json = file_get_contents(FCPATH . "assets/forms/form_list_attr.json");
-            $obj_attr  = json_decode($json, true);
+      //       $json = file_get_contents(FCPATH . "assets/forms/form_list_attr.json");
+      //       $obj_attr  = json_decode($json, true);
 
-            $obj  = (object) json_decode($json, true)[$type];
+      //       $obj  = (object) json_decode($json, true)[$type];
 
-            // Erase the DRNUMBER near the top right to give way to generated one
-            $pdf->SetXY(
-                  $obj->{'DR-X'},
-                  $obj->{'DR-Y'}
-            );
+      //       // Erase the DRNUMBER near the top right to give way to generated one
+      //       $pdf->SetXY(
+      //             $obj->{'DR-X'},
+      //             $obj->{'DR-Y'}
+      //       );
 
-            // Fill color similar to background
-            $pdf->SetFillColor(
-                  $obj->R,
-                  $obj->G,
-                  $obj->B
-            );
+      //       // Fill color similar to background
+      //       $pdf->SetFillColor(
+      //             $obj->R,
+      //             $obj->G,
+      //             $obj->B
+      //       );
 
-            // Fill color the color
-            $pdf->Cell(0, 10, '', 3, 0, 'C', true);
+      //       // Fill color the color
+      //       $pdf->Cell(0, 10, '', 3, 0, 'C', true);
 
-            $pdf = $this->insertData($pdf, $obj->DRX, $obj->DRY, "$dr_no", 14, [255, 0, 0]);      //DR NUMBER
-            $pdf = $this->insertData($pdf, $obj->NAMEX, $obj->NAMEY, "$member_name");            //MAKER NAME
-            $pdf = $this->insertData($pdf, $obj->NAMEX + 50, $obj->NAMEY, "$member_id");              //EMPLOYEE NUMBER
+      //       $pdf = $this->insertData($pdf, $obj->DRX, $obj->DRY, "$dr_no", 14, [255, 0, 0]);      //DR NUMBER
+      //       $pdf = $this->insertData($pdf, $obj->NAMEX, $obj->NAMEY, "$member_name");            //MAKER NAME
+      //       $pdf = $this->insertData($pdf, $obj->NAMEX + 50, $obj->NAMEY, "$member_id");              //EMPLOYEE NUMBER
 
-      }
+      // }
 
 
       public function insertData(&$pdf, $xaxis, $yaxis, $text, $fontsize = 8, $fontcolor = [0, 0, 0])
