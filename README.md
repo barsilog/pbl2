@@ -1,4 +1,4 @@
-# APC TELESCOOP REPO
+# APC PROJECTS
 
 PROJECTS:
-* [OnlineForms](https://github.com/barsilog/apc_telescoop/tree/master/onlineforms)
+* [OnlineForms](https://github.com/barsilog/pbl2/tree/master/onlineforms)
